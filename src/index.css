@@ -1,0 +1,15 @@
+/* Minimal global baseline.
+   The full design lives in src/styles/participant.css.
+   Kept this file so the existing import in main.jsx still works. */
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+}

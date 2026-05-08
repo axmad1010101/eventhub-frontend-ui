@@ -1,16 +1,61 @@
-# React + Vite
+# EventHub Participant UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend Participant UI module for the EventHub university project.
 
-Currently, two official plugins are available:
+The project is built with React + Vite and focuses on the participant-facing side of the event platform.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Event browsing homepage
+- Hero slider with featured events
+- Event cards with images
+- Filter events by category
+- Filter events by venue
+- Search events by name
+- Event details page
+- Add/remove events from watchlist
+- Watchlist page
+- 5-star rating system
+- Book Ticket demo modal
+- Login and Sign Up placeholder pages
+- Mock data used until backend APIs are ready
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- React Router
+- CSS
+- localStorage for temporary watchlist and ratings
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```txt
+src/
+  components/
+    BookingModal.jsx
+    EventCard.jsx
+    FilterBar.jsx
+    HeroSlider.jsx
+    Navbar.jsx
+    StarRating.jsx
+
+  data/
+    mockEvents.js
+
+  pages/
+    EventDetailsPage.jsx
+    HomePage.jsx
+    LoginPage.jsx
+    SignUpPage.jsx
+    WatchlistPage.jsx
+
+  services/
+    eventService.js
+
+  styles/
+    participant.css
+
+  utils/
+    ratings.js
+    watchlist.js

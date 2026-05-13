@@ -1,0 +1,222 @@
+/**
+ * Mock data for the Admin area.
+ * Replace with API responses later; keep the same shapes in adminService.js.
+ */
+
+/** Platform-wide numbers for the admin dashboard (not always equal to table row counts). */
+export const adminStats = {
+  totalUsers: 1842,
+  totalOrganizers: 96,
+  pendingOrganizers: 8,
+  totalEvents: 342,
+  pendingEvents: 6,
+  approvedEvents: 298,
+  rejectedEvents: 38,
+  ticketsSold: 45120,
+  totalRevenue: 2847500,
+}
+
+/**
+ * Events the admin team can review (queue + history in one list for the mock UI).
+ * Later you may split “pending only” vs “all” from different API endpoints.
+ */
+export const pendingEvents = [
+  {
+    id: 'evt-1',
+    title: 'Nile Jazz Evening — Cairo Opera',
+    organizerName: 'Nile Sound Productions',
+    category: 'Music',
+    venue: 'Cairo Opera House, Zamalek',
+    date: '2026-06-14',
+    ticketPrice: 450,
+    totalTickets: 600,
+    availableTickets: 412,
+    status: 'Pending',
+  },
+  {
+    id: 'evt-2',
+    title: 'Alexandria Startup Meetup',
+    organizerName: 'Mediterranean Tech Hub',
+    category: 'Business',
+    venue: 'Bibliotheca Alexandrina Conference Center',
+    date: '2026-06-22',
+    ticketPrice: 120,
+    totalTickets: 200,
+    availableTickets: 0,
+    status: 'Approved',
+  },
+  {
+    id: 'evt-3',
+    title: 'Giza Food & Wine Fair',
+    organizerName: 'Upper Egypt Experiences LLC',
+    category: 'Food',
+    venue: 'Giza Plateau View Club',
+    date: '2026-07-05',
+    ticketPrice: 280,
+    totalTickets: 350,
+    availableTickets: 280,
+    status: 'Pending',
+  },
+  {
+    id: 'evt-4',
+    title: 'Luxor Archaeology Forum',
+    organizerName: 'Mediterranean Cultural NGO',
+    category: 'Culture',
+    venue: 'Winter Palace Hotel, Luxor',
+    date: '2026-07-18',
+    ticketPrice: 0,
+    totalTickets: 120,
+    availableTickets: 88,
+    status: 'Rejected',
+  },
+  {
+    id: 'evt-5',
+    title: 'Red Sea Dive Expo — Hurghada',
+    organizerName: 'Hurghada Blue Horizon',
+    category: 'Sports',
+    venue: 'Hurghada International Marina Hall',
+    date: '2026-08-02',
+    ticketPrice: 950,
+    totalTickets: 180,
+    availableTickets: 42,
+    status: 'Approved',
+  },
+  {
+    id: 'evt-6',
+    title: 'Cairo Tech Summit — New Capital',
+    organizerName: 'Future Makers Egypt',
+    category: 'Technology',
+    venue: 'New Administrative Capital Convention Center',
+    date: '2026-09-10',
+    ticketPrice: 1500,
+    totalTickets: 800,
+    availableTickets: 800,
+    status: 'Pending',
+  },
+]
+
+/** Organizer accounts awaiting or past admin review. */
+export const organizers = [
+  {
+    id: 'org-1',
+    name: 'Yasmin El-Khouly',
+    email: 'yasmin.khouly@nilesound.eg',
+    organizationName: 'Nile Sound Productions',
+    phoneNumber: '+20 100 221 8844',
+    status: 'Approved',
+    submittedAt: '2025-11-02T10:15:00Z',
+  },
+  {
+    id: 'org-2',
+    name: 'Omar Hafez',
+    email: 'omar.hafez@bluehorizon.red',
+    organizationName: 'Hurghada Blue Horizon',
+    phoneNumber: '+20 127 554 0091',
+    status: 'Pending',
+    submittedAt: '2026-05-01T14:40:00Z',
+  },
+  {
+    id: 'org-3',
+    name: 'Layla Mansour',
+    email: 'layla@circularcairo.org',
+    organizationName: 'Cairo Circular Collective',
+    phoneNumber: '+20 111 903 7720',
+    status: 'Pending',
+    submittedAt: '2026-05-08T09:05:00Z',
+  },
+  {
+    id: 'org-4',
+    name: 'Karim Abdel Rahman',
+    email: 'karim@upperegyp-exp.com',
+    organizationName: 'Upper Egypt Experiences LLC',
+    phoneNumber: '+20 122 661 4402',
+    status: 'Approved',
+    submittedAt: '2025-09-19T16:22:00Z',
+  },
+  {
+    id: 'org-5',
+    name: 'Noura Said',
+    email: 'noura.said@medcult.ngo',
+    organizationName: 'Mediterranean Cultural NGO',
+    phoneNumber: '+20 128 440 1198',
+    status: 'Rejected',
+    submittedAt: '2026-04-22T11:30:00Z',
+  },
+  {
+    id: 'org-6',
+    name: 'Hadi Farouk',
+    email: 'hadi@futuremakers.eg',
+    organizationName: 'Future Makers Egypt',
+    phoneNumber: '+20 100 778 3321',
+    status: 'Pending',
+    submittedAt: '2026-01-14T08:45:00Z',
+  },
+]
+
+/** Sample user directory for admin filters and table. */
+export const users = [
+  {
+    id: 'usr-1',
+    name: 'Mariam Ashraf',
+    email: 'mariam.ashraf@mail.com',
+    role: 'Participant',
+    status: 'Active',
+    createdAt: '2025-08-10T12:00:00Z',
+  },
+  {
+    id: 'usr-2',
+    name: 'System Administrator',
+    email: 'admin@eventhub.internal',
+    role: 'Admin',
+    status: 'Active',
+    createdAt: '2025-01-01T00:00:00Z',
+  },
+  {
+    id: 'usr-3',
+    name: 'Tarek Soliman',
+    email: 'tarek.soliman@mail.com',
+    role: 'Participant',
+    status: 'Active',
+    createdAt: '2025-10-02T09:30:00Z',
+  },
+  {
+    id: 'usr-4',
+    name: 'Dina El-Masry',
+    email: 'dina.elmasry@events.eg',
+    role: 'EventOrganizer',
+    status: 'Approved',
+    createdAt: '2025-06-18T14:20:00Z',
+  },
+  {
+    id: 'usr-5',
+    name: 'Youssef Khaled',
+    email: 'youssef.khaled@mail.com',
+    role: 'Participant',
+    status: 'Pending',
+    createdAt: '2026-04-01T11:00:00Z',
+  },
+  {
+    id: 'usr-6',
+    name: 'Farida Hanna',
+    email: 'farida.hanna@startup.org',
+    role: 'EventOrganizer',
+    status: 'Pending',
+    createdAt: '2026-05-12T08:45:00Z',
+  },
+  {
+    id: 'usr-7',
+    name: 'Omar El-Sherif',
+    email: 'omar.sherif@mail.com',
+    role: 'Participant',
+    status: 'Inactive',
+    createdAt: '2024-03-20T16:10:00Z',
+  },
+  {
+    id: 'usr-8',
+    name: 'Laila Mostafa',
+    email: 'laila.mostafa@events.eg',
+    role: 'EventOrganizer',
+    status: 'Rejected',
+    createdAt: '2026-02-28T13:25:00Z',
+  },
+]

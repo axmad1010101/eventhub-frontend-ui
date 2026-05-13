@@ -64,7 +64,7 @@ export default function EventDetailsPage() {
 
   if (loading) {
     return (
-      <section className="page">
+      <section className="page page--details">
         <h1>Event Details</h1>
         <div className="details-card">
           <p>Loading event...</p>
@@ -76,7 +76,7 @@ export default function EventDetailsPage() {
   // If the id doesn't exist in our data, show a clean message instead of crashing.
   if (!event) {
     return (
-      <section className="page">
+      <section className="page page--details">
         <h1>Event Details</h1>
         <div className="details-card">
           <p>Event not found.</p>
@@ -91,7 +91,7 @@ export default function EventDetailsPage() {
   }
 
   return (
-    <section className="page">
+    <section className="page page--details">
       <div className="details-header">
         <div>
           <h1 className="details-title">{event.title}</h1>

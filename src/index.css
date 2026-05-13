@@ -10,6 +10,16 @@ body,
   min-height: 100%;
 }
 
+html,
+body {
+  /* Let the document grow with content and always allow vertical scroll.
+     Prevents any future ancestor style from accidentally clipping the page. */
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
 #root {
+  /* Use min-height (not height) so the root grows with the page content
+     instead of being locked to one viewport height. */
   min-height: 100vh;
 }

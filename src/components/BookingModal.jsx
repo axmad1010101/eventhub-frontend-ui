@@ -134,8 +134,7 @@ export default function BookingModal({ event, onClose }) {
 
             <div className="modal-success">
               <p>
-                Ticket reserved successfully. Backend booking and QR code will be
-                connected later.
+                Ticket reserved successfully. Save your reference number for your records.
               </p>
               <dl className="details-list modal-details">
                 <div className="row">

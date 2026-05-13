@@ -62,12 +62,16 @@ img {
    ------------------------------------------------------------- */
 .page-container {
   width: min(1100px, calc(100% - 32px));
-  margin: 28px auto 64px;
+  /* Top spacing under the navbar via margin, bottom spacing via padding so
+     every page has a comfortable scroll tail and never feels cut off. */
+  margin: 28px auto 0;
+  padding-bottom: 80px;
 }
 
 @media (max-width: 600px) {
   .page-container {
-    margin: 18px auto 40px;
+    margin: 18px auto 0;
+    padding-bottom: 56px;
   }
 }
 
@@ -76,6 +80,18 @@ img {
   display: flex;
   flex-direction: column;
   gap: 18px;
+}
+
+/* Extra bottom breathing room for the Event Details page, whose last section
+   (rating) tends to sit near the viewport edge on shorter screens. */
+.page--details {
+  padding-bottom: 16px;
+}
+
+@media (min-width: 601px) {
+  .page-container:has(.page--details) {
+    padding-bottom: 96px;
+  }
 }
 
 /* Default heading style for any bare <h1> inside a page (e.g. the
@@ -563,32 +579,81 @@ img {
   position: sticky;
   top: 0;
   z-index: 10;
+  background: #ffffff;
   border-bottom: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: saturate(140%) blur(6px);
-  -webkit-backdrop-filter: saturate(140%) blur(6px);
 }
 
 .navbar__inner {
   width: min(1100px, calc(100% - 32px));
   margin: 0 auto;
-  min-height: 60px;
-  padding: 8px 0;
+  min-height: 56px;
+  padding: 10px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px 20px;
+  flex-wrap: wrap;
 }
 
-.navbar__logo {
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  font-size: 17px;
-  color: var(--text);
+/* Brand lockup: dot + wordmark + subtle suffix (reads as one unit, not a lone bold word). */
+.navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   text-decoration: none;
+  color: var(--text-2);
+  flex-shrink: 0;
 }
 
-.navbar__logo:hover {
+.navbar__brand:hover {
+  color: var(--text);
+}
+
+.navbar__brand:hover .navbar__brand-mark {
+  border-color: var(--text-2);
+  background: var(--surface-soft);
+}
+
+.navbar__brand-mark {
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+  flex-shrink: 0;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.navbar__brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 1.15;
+}
+
+.navbar__brand-name {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  color: var(--text-2);
+}
+
+.navbar__brand-suffix {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.navbar__brand:hover .navbar__brand-name {
+  color: var(--text);
+}
+
+.navbar__brand:hover .navbar__brand-suffix {
   color: var(--text-2);
 }
 
@@ -596,91 +661,108 @@ img {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
   flex-wrap: wrap;
+  gap: 4px 2px;
+  row-gap: 6px;
+  margin-left: auto;
 }
 
-.navbar__links {
-  display: flex;
-  gap: 4px;
-  align-items: center;
-}
-
-.navbar__auth {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
+/* Text nav links — minimal; Sign Up is the only outlined control. */
 .navbar__link {
   text-decoration: none;
   color: var(--text-2);
-  padding: 8px 12px;
+  padding: 8px 14px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
+  transition:
+    color 0.15s ease,
+    text-decoration-color 0.15s ease;
 }
 
-.navbar__link--quiet {
-  color: var(--muted);
-  font-weight: 500;
+.navbar__link:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--border-strong);
+  text-underline-offset: 5px;
+}
+
+/* `NavLink` adds `aria-current="page"` when active */
+.navbar__link[aria-current='page'] {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: var(--text-2);
+  text-underline-offset: 5px;
 }
 
 .navbar__signup {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
+  margin-left: 6px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
+  background: #ffffff;
+  color: var(--text-2);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
 }
 
 .navbar__signup:hover {
+  color: var(--text);
   background: var(--surface-soft);
-  border-color: var(--border-strong);
+  border-color: var(--text-2);
 }
 
-.navbar__link:hover {
+.navbar__signup[aria-current='page'] {
+  color: var(--text);
+  border-color: var(--text-2);
   background: var(--surface-soft);
-  color: var(--text);
-}
-
-/* `NavLink` in React Router adds `aria-current="page"` when active */
-.navbar__link[aria-current='page'] {
-  background: #eef2f7;
-  color: var(--text);
 }
 
 @media (max-width: 640px) {
   .navbar__inner {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .navbar__nav {
+    margin-left: 0;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-start;
+  }
+
+  .navbar__signup {
+    margin-left: 4px;
   }
 }
 
 @media (max-width: 480px) {
   .navbar__inner {
-    min-height: 56px;
+    min-height: 52px;
+    padding: 8px 0;
+    gap: 12px;
   }
 
   .navbar__link {
     padding: 6px 10px;
+    font-size: 13px;
   }
 
   .navbar__signup {
-    padding: 6px 12px;
+    padding: 7px 12px;
     font-size: 13px;
+  }
+
+  .navbar__brand-name {
+    font-size: 15px;
   }
 }
 
@@ -1257,6 +1339,8 @@ select.field__control {
 .rating-section {
   margin-top: 18px;
   padding-top: 16px;
+  /* Bottom breathing room so the stars never sit flush against the card edge. */
+  padding-bottom: 8px;
   border-top: 1px solid var(--border);
 }
 

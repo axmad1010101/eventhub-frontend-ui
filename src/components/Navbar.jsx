@@ -4,30 +4,27 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar__inner">
-        <Link to="/" className="navbar__logo" aria-label="EventHub home">
-          EventHub
+        <Link to="/" className="navbar__brand" aria-label="EventHub Tickets home">
+          <span className="navbar__brand-mark" aria-hidden />
+          <span className="navbar__brand-text">
+            <span className="navbar__brand-name">Event Hub</span>
+            <span className="navbar__brand-suffix">Tickets</span>
+          </span>
         </Link>
 
         <nav className="navbar__nav" aria-label="Main navigation">
-          <div className="navbar__links">
-            {/* `NavLink` lets us style the active link automatically */}
-            <NavLink to="/" end className="navbar__link">
-              Home
-            </NavLink>
-            <NavLink to="/watchlist" className="navbar__link">
-              Watchlist
-            </NavLink>
-          </div>
-
-          <div className="navbar__auth">
-            {/* Real client-side routes; auth itself is not wired to a backend yet. */}
-            <NavLink to="/login" className="navbar__link navbar__link--quiet">
-              Login
-            </NavLink>
-            <NavLink to="/signup" className="navbar__signup">
-              Sign Up
-            </NavLink>
-          </div>
+          <NavLink to="/" end className="navbar__link">
+            Events
+          </NavLink>
+          <NavLink to="/watchlist" className="navbar__link">
+            Watchlist
+          </NavLink>
+          <NavLink to="/login" className="navbar__link">
+            Login
+          </NavLink>
+          <NavLink to="/signup" className="navbar__signup">
+            Sign Up
+          </NavLink>
         </nav>
       </div>
     </header>

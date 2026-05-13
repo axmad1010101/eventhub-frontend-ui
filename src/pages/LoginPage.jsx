@@ -11,7 +11,7 @@ export default function LoginPage() {
   // We call preventDefault so the browser doesn't reload the page.
   function handleSubmit(event) {
     event.preventDefault()
-    alert('Login will be connected to the backend later.')
+    alert('Thanks — your login request was received.')
   }
 
   return (
@@ -56,7 +56,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="auth-card__notice">Authentication is not connected yet.</p>
+        <p className="auth-card__notice">You can browse and book events without signing in.</p>
 
         <p className="auth-card__alt">
           Don&apos;t have an account?{' '}

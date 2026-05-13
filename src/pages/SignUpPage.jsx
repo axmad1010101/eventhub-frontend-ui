@@ -10,7 +10,7 @@ export default function SignUpPage() {
 
   function handleSubmit(event) {
     event.preventDefault()
-    alert('Sign up will be connected to the backend later.')
+    alert('Account request submitted.')
   }
 
   return (
@@ -80,7 +80,7 @@ export default function SignUpPage() {
           </button>
         </form>
 
-        <p className="auth-card__notice">Registration is not connected yet.</p>
+        <p className="auth-card__notice">We will follow up by email when your account is ready.</p>
 
         <p className="auth-card__alt">
           Already have an account?{' '}

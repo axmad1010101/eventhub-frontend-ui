@@ -4,41 +4,33 @@ import { Link } from 'react-router-dom'
 import BookingModal from './BookingModal.jsx'
 
 export default function HeroSlider({ events }) {
-  // Featured = the first 4 events. Slice copies so we don't mutate the prop.
+  // Featured = first 4 only. Grid below still uses the full filtered list on HomePage.
   const featured = (events || []).slice(0, 4)
 
-  // `currentSlide` is the index of the slide currently shown.
-  // useState remembers it across renders.
   const [currentSlide, setCurrentSlide] = useState(0)
 
-  // Controls visibility of the booking modal for the active slide.
-  const [bookingOpen, setBookingOpen] = useState(false)
+  // When non-null, the booking modal is open for *this* event only (slide does not change underneath).
+  const [bookingEvent, setBookingEvent] = useState(null)
 
-  // Auto-slide every 4 seconds.
-  // useEffect runs after each render; the cleanup (clearInterval) prevents
-  // stacking multiple timers.
+  // Auto-slide every 4 seconds — paused while a booking modal is open.
   useEffect(() => {
-    if (featured.length <= 1) return
+    if (featured.length <= 1 || bookingEvent) return
 
     const intervalId = setInterval(() => {
-      // Use the functional form so we always advance from the latest value.
       setCurrentSlide((prev) => (prev + 1) % featured.length)
     }, 4000)
 
     return () => clearInterval(intervalId)
-  }, [featured.length])
+  }, [featured.length, bookingEvent])
 
-  // If we don't have events yet, render nothing (HomePage also guards this).
   if (featured.length === 0) return null
 
   const event = featured[currentSlide]
 
-  // Going to the previous slide wraps around to the last item.
   function goPrev() {
     setCurrentSlide((prev) => (prev - 1 + featured.length) % featured.length)
   }
 
-  // Going to the next slide wraps around to the first item.
   function goNext() {
     setCurrentSlide((prev) => (prev + 1) % featured.length)
   }
@@ -47,9 +39,12 @@ export default function HeroSlider({ events }) {
     setCurrentSlide(index)
   }
 
-  // Open the booking modal for the currently displayed slide.
   function handleBookTicket() {
-    setBookingOpen(true)
+    setBookingEvent(featured[currentSlide])
+  }
+
+  function handleCloseBooking() {
+    setBookingEvent(null)
   }
 
   return (
@@ -128,9 +123,9 @@ export default function HeroSlider({ events }) {
         </>
       )}
 
-      {bookingOpen && (
-        <BookingModal event={event} onClose={() => setBookingOpen(false)} />
-      )}
+      {bookingEvent ? (
+        <BookingModal key={bookingEvent.id} event={bookingEvent} onClose={handleCloseBooking} />
+      ) : null}
     </section>
   )
 }

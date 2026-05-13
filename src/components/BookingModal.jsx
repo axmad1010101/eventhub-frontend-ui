@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react'
 
 export default function BookingModal({ event, onClose }) {
-  // `quantity` controls how many tickets the user wants to book (1..5).
   const [quantity, setQuantity] = useState(1)
-
-  // `confirmed` flips to true after the user clicks "Confirm Booking".
-  // We then show the success view inside the same modal.
   const [confirmed, setConfirmed] = useState(false)
+  const [ticketId, setTicketId] = useState(null)
 
-  // `bookingId` is a fake reference number generated when we confirm.
-  const [bookingId, setBookingId] = useState(null)
-
-  // Close on Escape so keyboard users aren't trapped.
   useEffect(() => {
     function onKeyDown(e) {
       if (e.key === 'Escape') onClose?.()
@@ -22,18 +15,14 @@ export default function BookingModal({ event, onClose }) {
 
   if (!event) return null
 
-  // Total price recalculates on every render based on the current quantity.
   const totalPrice = event.ticketPrice * quantity
 
   function handleConfirm() {
-    // Fake reference number — replace with the API response when backend exists.
-    const fakeId = `EVT-${Math.floor(10000 + Math.random() * 90000)}`
-    setBookingId(fakeId)
+    const id = `TIX-${Math.floor(100000 + Math.random() * 900000)}`
+    setTicketId(id)
     setConfirmed(true)
   }
 
-  // Click outside the card closes the modal. We stop propagation inside the card
-  // so clicks on inputs/buttons don't bubble up and close it accidentally.
   function handleOverlayClick() {
     onClose?.()
   }
@@ -125,17 +114,29 @@ export default function BookingModal({ event, onClose }) {
           <>
             <header className="modal-header">
               <h2 id="booking-modal-title" className="modal-title">
-                Ticket reserved
+                Booking confirmed
               </h2>
-              <p className="muted">
-                Booking reference: <strong className="mono">{bookingId}</strong>
-              </p>
             </header>
 
             <div className="modal-success">
-              <p>
-                Ticket reserved successfully. Save your reference number for your records.
+              <p className="modal-success__lead">Ticket reserved successfully.</p>
+
+              <p className="booking-ticket-id">
+                Ticket ID: <strong className="mono">{ticketId}</strong>
               </p>
+
+              {/*
+                QR preview: CSS-only stand-in. Later replace with real ticket QR from the API, e.g.
+                GET /api/ticket/qrcode/{qrCode}
+              */}
+              <div
+                className="booking-qr-placeholder"
+                role="img"
+                aria-label="QR code preview (illustration only)"
+              />
+
+              <p className="booking-qr-foot">Show this code at the event entrance.</p>
+
               <dl className="details-list modal-details">
                 <div className="row">
                   <dt>Event</dt>

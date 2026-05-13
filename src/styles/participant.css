@@ -246,6 +246,45 @@ img {
   line-height: 1.5;
 }
 
+.modal-success__lead {
+  margin: 0 0 8px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.booking-ticket-id {
+  margin: 0 0 4px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.booking-ticket-id .mono {
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
+/* CSS-only “QR” pattern — not scannable; replace with real image from GET /api/ticket/qrcode/{qrCode}. */
+.booking-qr-placeholder {
+  width: 152px;
+  height: 152px;
+  margin: 12px auto 10px;
+  border-radius: 8px;
+  border: 2px solid #111827;
+  background-color: #fff;
+  background-image: repeating-conic-gradient(#111827 0% 25%, #ffffff 0% 50%) 50% 50% / 10px 10px;
+  box-sizing: border-box;
+}
+
+.booking-qr-foot {
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
 @media (max-width: 480px) {
   .modal-card {
     padding: 20px;

@@ -76,8 +76,7 @@ export default function HomePage() {
         <p className="page-subtitle">Find events by category, venue, or name.</p>
       </header>
 
-      {/* Hero only renders once the full event list is loaded. It always
-          shows featured events from the full list — filters don't affect it. */}
+      {/* Hero uses the full list; HeroSlider keeps only the first 4. Filters do not change the hero. */}
       {allEvents.length > 0 && <HeroSlider events={allEvents} />}
 
       <FilterBar

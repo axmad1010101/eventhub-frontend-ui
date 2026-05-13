@@ -108,9 +108,9 @@ export default function EventCard({ event, onWatchlistChange }) {
         </div>
       </div>
 
-      {bookingOpen && (
-        <BookingModal event={event} onClose={() => setBookingOpen(false)} />
-      )}
+      {bookingOpen ? (
+        <BookingModal key={event.id} event={event} onClose={() => setBookingOpen(false)} />
+      ) : null}
     </article>
   )
 }
